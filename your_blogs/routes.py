@@ -1,16 +1,12 @@
-from flask import Flask, render_template, url_for, flash, redirect
-from forms import RegisterForm, LoginForm
-import os
-
-app = Flask(__name__)
-
-# To Do :
-# replace the secret key
-app.config['SECRET_KEY'] = '9c47844038dd8fe3543a9c0b080e8572'
+from flask import render_template, url_for, flash, redirect
+from your_blogs import app
+from your_blogs.models import User, Post
+from your_blogs.forms import RegisterForm, LoginForm
 
 
 # To Do ;
 # replace dummy data with actual data using a database
+
 posts = [
     {
         'author': 'sunny',
