@@ -1,0 +1,27 @@
+
+.content-section {
+    background: #ffffff;
+    padding: 10px 0px 10px 20px; 
+    border: 1px solid #dddddd;
+    border-radius: 3px;
+    margin-bottom: 20px;
+  }
+
+.account-img {
+  width: 125px;
+  margin-right: 20px;
+  margin-bottom: 16px;
+  float: left;
+}
+
+.account-heading {
+  font-size: 2.5rem;
+}
+
+.update-form{
+  clear: left;
+}
+
+.user-info{
+  margin-bottom: 20px;
+}
