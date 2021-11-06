@@ -1,5 +1,58 @@
 {% extends 'base.html' %}
 {% block content %}
-<h1>{{ current_user.username }}</h1>
+    <div class="user-info">
+        <img src="{{ avatar }}" alt="" class="rounded-circle account-img">
+        <div>
+            <h2 class="account-heading">{{ current_user.username }}</h2>
+            <p class="text-secondary">{{ current_user.email }}</p>
+        </div>
+    </div>
+    <div class="update-form">
+    <form action="" method="POST" enctype="multipart/form-data">
+        {{ form.hidden_tag() }}
+        <fieldset class="form-group">
+            <div class="form-group mb-4">
+                {{ form.username.label(class="form-control-label") }}
+                {% if form.username.errors %}
+                     {{ form.username(class="form-control form-control-lg w-50 is-invalid") }}
+                    <div class="invalid-feedback">
+                        {% for error in form.username.errors %}
+                            <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                      {{ form.username(class="form-control form-control-lg w-50") }}
+                {% endif %}
+
+            </div>
+             <div class="form-group mb-4">
+                {{ form.email.label(class="form-control-label") }}
+                 {% if form.email.errors %}
+                     {{ form.email(class="form-control form-control-lg w-50 is-invalid") }}
+                    <div class="invalid-feedback">
+                        {% for error in form.email.errors %}
+                            <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                      {{ form.email(class="form-control form-control-lg w-50") }}
+                {% endif %}
+            </div>
+            <div class="form-group mb-4">
+                {{ form.avatar(class="form-control-file") }}
+                {% if form.avatar.errors %}
+                    {% for error in form.avatar.errors %}
+                    <span class="text-danger">{{ error }}</span>
+                    {% endfor %}
+                {% endif %}
+                <br>
+                {{ form.avatar.label() }}
+            </div>
+        </fieldset>
+        <div class="form-group mb-3">
+            {{ form.submit(class="btn btn-lg btn-outline-dark") }}
+        </div>
+    </form>
+</div>
 
 {% endblock %}

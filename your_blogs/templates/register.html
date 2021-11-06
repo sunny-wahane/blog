@@ -6,7 +6,7 @@
         <fieldset class="form-group">
             <legend class="border-bottom mb-4 mt-4 w-50">Welcome to Your Blogs</legend>
             <div class="form-group mb-4">
-                {{ form.username.label(class="form-control-label") }}
+                {{ form.username.label }}
                 {% if form.username.errors %}
                      {{ form.username(class="form-control form-control-lg w-50 is-invalid") }}
                     <div class="invalid-feedback">
@@ -20,7 +20,7 @@
 
             </div>
              <div class="form-group mb-4">
-                {{ form.email.label(class="form-control-label") }}
+                {{ form.email.label }}
                  {% if form.email.errors %}
                      {{ form.email(class="form-control form-control-lg w-50 is-invalid") }}
                     <div class="invalid-feedback">
@@ -33,7 +33,7 @@
                 {% endif %}
             </div>
             <div class="form-group mb-4">
-                {{ form.password.label(class="form-control-label") }}
+                {{ form.password.label }}
                  {% if form.password.errors %}
                      {{ form.password(class="form-control form-control-lg w-50 is-invalid") }}
                     <div class="invalid-feedback">
@@ -46,7 +46,7 @@
                 {% endif %}
             </div>
             <div class="form-group mb-4">
-                {{ form.confirm_password.label(class="form-control-label") }}
+                {{ form.confirm_password.label }}
                  {% if form.confirm_password.errors %}
                      {{ form.confirm_password(class="form-control form-control-lg w-50 is-invalid") }}
                     <div class="invalid-feedback">
