@@ -1,8 +1,11 @@
 from flask import render_template, url_for, flash, redirect, request
 from your_blogs import app, bcrypt, db
 from your_blogs.models import User, Post
-from your_blogs.forms import RegisterForm, LoginForm
+from your_blogs.forms import RegisterForm, LoginForm, UpdateForm
 from flask_login import login_user, current_user, logout_user, login_required
+import secrets
+import os
+from PIL import Image
 
 # To Do ;
 # replace dummy data with actual data using a database
@@ -70,7 +73,36 @@ def logout():
     return redirect(url_for('home'))
 
 
-@app.route("/account")
+def save_avatar(file):
+    random_hex = secrets.token_hex(8)
+    _, f_extenstion = os.path.splitext(file.filename)
+    random_file_name = random_hex + f_extenstion
+    avatar_path = os.path.join(app.root_path, 'static', random_file_name)
+
+    output_size = (125,125)
+    i = Image.open(file)
+    i.thumbnail(output_size)
+
+    i.save(avatar_path)
+
+    return random_file_name
+
+
+@app.route("/account", methods=["GET", "POST"])
 @login_required
 def account():
-    return render_template('account.html', title= 'Account')
+    avatar = url_for('static', filename=current_user.avatar)
+    form = UpdateForm()
+    if form.validate_on_submit():
+        if form.avatar.data:
+            avatar_name = save_avatar(form.avatar.data)
+            current_user.avatar = avatar_name
+        current_user.username = form.username.data
+        current_user.email = form.email.data
+        db.session.commit()
+        flash("Account update sucessful", "success ")
+        return redirect(url_for('account'))
+    elif request.method == 'GET':
+        form.username.data = current_user.username
+        form.email.data  = current_user.email
+    return render_template('account.html', title= 'Account', avatar=avatar, form=form)
