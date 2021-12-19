@@ -8,27 +8,27 @@
              <div class="form-group mb-4">
                 {{ form.username.label }}
                 {% if form.username.errors %}
-                     {{ form.username(class="form-control form-control-lg w-50 is-invalid") }}
+                     {{ form.username(class="form-control form-control-lg is-invalid") }}
                     <div class="invalid-feedback">
                         {% for error in form.username.errors %}
                             <span>{{ error }}</span>
                         {% endfor %}
                     </div>
                 {% else %}
-                      {{ form.username(class="form-control form-control-lg w-50") }}
+                      {{ form.username(class="form-control form-control-lg") }}
                 {% endif %}
              </div>
              <div class="form-group mb-4">
                 {{ form.password.label }}
                  {% if form.password.errors %}
-                     {{ form.password(class="form-control form-control-lg w-50 is-invalid") }}
+                     {{ form.password(class="form-control form-control-lg is-invalid") }}
                     <div class="invalid-feedback">
                         {% for error in form.password.errors %}
                             <span>{{ error }}</span>
                         {% endfor %}
                     </div>
                 {% else %}
-                      {{ form.password(class="form-control form-control-lg w-50") }}
+                      {{ form.password(class="form-control form-control-lg") }}
                 {% endif %}
             </div>
             <div class="form-check mb-3">
@@ -39,9 +39,12 @@
          <div class="form-group mb-3">
             {{ form.submit(class="btn btn-lg btn-outline-dark") }}
         </div>
+        <small class="text-muted ml-2">
+            <a href="{{ url_for('users.reset_request') }}">Forgot Password?</a>
+        </small>
         <div class="border-top pt-2 w-50">
             <small class="text-muted">
-                New to Your Blogs ? <a class="ml-2" href="{{ url_for('register') }}">Register</a>
+                New to Your Blogs ? <a class="ml-2" href="{{ url_for('users.register') }}">Register</a>
             </small>
         </div>
     </form>
