@@ -2,7 +2,8 @@ import os
 
 class Config():
     SECRET_KEY = os.environ.get('KEY')
-    SQLALCHEMY_DATABASE_URI = 'sqlite:///blog.db'
+    SQLALCHEMY_DATABASE_URI =  os.environ.get('DATABASE_URL', '').replace('postgres://', 'postgresql://') or \
+        'sqlite:///blog.db'
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     MAIL_SERVER = 'smtp.gmail.com'
     MAIL_PORT = 587
